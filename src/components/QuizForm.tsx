@@ -17,7 +17,7 @@ export const QuizForm = ({ topology, selectedCityId, onSelect }: Props) => {
 
   const [cities, setCities] = useAtom(quizDataAtom);
   const { register, setFocus } = useForm({
-    defaultValues: cities.reduce<DefaultValues<FieldValues>>((acc, city) => {
+    values: cities.reduce<DefaultValues<FieldValues>>((acc, city) => {
       acc[city.code] = city.answer;
       return acc;
     }, {}),
@@ -44,7 +44,6 @@ export const QuizForm = ({ topology, selectedCityId, onSelect }: Props) => {
   return (
     <div className="h-full overflow-y-scroll scroll-smooth pr-2">
       <div className="flex flex-col gap-4 pl-2 pr-3">
-        {/* <Counter /> */}
         {cities.map((city, index) => {
           return (
             // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
@@ -55,13 +54,16 @@ export const QuizForm = ({ topology, selectedCityId, onSelect }: Props) => {
             >
               <div
                 className={cn(
+                  // 共通スタイル
                   "grid grid-cols-[2rem_1fr] gap-3 bg-white rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-sky-600 p-2",
+                  // 正解
                   answerMode &&
                     isSameCity(city.name, city.answer) &&
-                    "bg-green-100",
+                    "bg-green-100 focus-within:ring-green-600",
+                  // 不正解
                   answerMode &&
                     !isSameCity(city.name, city.answer) &&
-                    "bg-red-100"
+                    "bg-red-100 focus-within:ring-red-600"
                 )}
               >
                 <p className="text-right text-gray-700">{index + 1}</p>

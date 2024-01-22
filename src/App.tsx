@@ -1,8 +1,8 @@
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 import { BlankMap } from "./components/BlankMap";
 
 import { HokkaidoTopology } from "./HokkaidoTopology";
-import { answerModeAtom, selectedCityIdAtom } from "./atom";
+import { selectedCityIdAtom } from "./atom";
 
 import { Answer } from "./components/Answer";
 import { Counter } from "./components/Counter";
@@ -11,11 +11,9 @@ import { License } from "./components/License";
 import { QuizForm } from "./components/QuizForm";
 
 import GithubCorner from "react-github-corner";
-import { Share } from "./components/Share";
 import json from "./data/hokkaido.json";
 
 function App() {
-  const answerMode = useAtomValue(answerModeAtom);
   const [selectedCityId, setSelectedCityId] = useAtom(selectedCityIdAtom);
   const topology = json as unknown as HokkaidoTopology;
 
