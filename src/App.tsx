@@ -23,7 +23,7 @@ function App() {
         <div className="border-b-2 border-solid">
           <Header />
         </div>
-        <div className="row-span-3 overflow-y-hidden p-10">
+        <div className="row-span-3 overflow-y-hidden pt-10 px-10">
           <BlankMap
             topology={topology}
             selectedCityId={selectedCityId}

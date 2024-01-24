@@ -38,7 +38,7 @@ export const Answer = () => {
       <DialogContent className="max-w-screen-md">
         <DialogHeader>
           <DialogTitle>北海道市町村テスト 答え合わせ</DialogTitle>
-          <DialogDescription>
+          <DialogDescription asChild>
             <div className="flex flex-col items-center">
               <div>
                 <span className="text-9xl text-red-800">

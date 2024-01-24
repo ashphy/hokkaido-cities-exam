@@ -4,12 +4,7 @@ import { atomWithStorage } from "jotai/utils";
 import type { HokkaidoTopology } from "./HokkaidoTopology";
 import json from "./data/hokkaido.json";
 import { isSameCity } from "./features/quiz/quiz";
-
-interface City {
-  code: string;
-  name: string;
-  answer: string;
-}
+import { City } from "./features/quiz/city";
 
 type QuizData = City[];
 
