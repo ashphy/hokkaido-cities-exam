@@ -144,7 +144,7 @@ export const BlankMap = ({ topology, selectedCityId, onSelect }: Props) => {
         <div
           className="absolute left-4 top-4 bg-white text-slate-800 rounded-full
            shadow-lg px-2 py-1 border border-gray-500 cursor-default
-           transition-opacity	"
+           transition-opacity	opacity-0"
           id="map-tooltip"
         >
           Tips
