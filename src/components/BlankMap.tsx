@@ -48,7 +48,7 @@ export const BlankMap = ({ topology, selectedCityId, onSelect }: Props) => {
     const path = d3.geoPath().projection(projection);
 
     return (
-      <div className="w-fit h-full max-w-full max-h-full">
+      <div className="w-full h-full max-w-full max-h-full">
         {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
         {/* biome-ignore lint/a11y/useKeyWithMouseEvents: <explanation> */}
         <svg
