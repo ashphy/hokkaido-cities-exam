@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react-swc";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "https://hokkaido-cities-exam.pages.dev/",
+  base: "https://hokkaido-cities-exam.ashphy.com/",
   plugins: [react()],
   resolve: {
     alias: {
