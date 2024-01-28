@@ -18,6 +18,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
+import { Button } from "./ui/button";
 
 export const Counter = () => {
   const answerMode = useAtomValue(answerModeAtom);
@@ -43,7 +44,9 @@ const AnswerEraser = () => {
   return (
     <AlertDialog>
       <AlertDialogTrigger>
-        <Eraser />
+        <Button variant="ghost" size="icon" title="回答をすべて削除する">
+          <Eraser />
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
