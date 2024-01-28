@@ -26,8 +26,8 @@ export const Answer = () => {
 
   return (
     <Dialog
-      onOpenChange={() => {
-        setAnswerMode(true);
+      onOpenChange={(open: boolean) => {
+        if (!open) setAnswerMode(true);
       }}
     >
       <DialogTrigger asChild>

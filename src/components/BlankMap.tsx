@@ -151,7 +151,7 @@ export const BlankMap = ({ topology, selectedCityId, onSelect }: Props) => {
         </div>
       </div>
     );
-  }, [onSelect, topology, answerMode, cities, selectedCityId]);
+  }, [onSelect, topology, cities, selectedCityId, answerMode]);
 
   useEffect(() => {
     // Reset styles

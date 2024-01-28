@@ -43,7 +43,7 @@ const AnswerEraser = () => {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
+      <AlertDialogTrigger asChild>
         <Button variant="ghost" size="icon" title="回答をすべて削除する">
           <Eraser />
         </Button>
