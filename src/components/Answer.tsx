@@ -35,7 +35,7 @@ export const Answer = () => {
           <Button className="w-full">答え合わせ</Button>
         </div>
       </DialogTrigger>
-      <DialogContent className="max-w-screen-md">
+      <DialogContent className="max-w-screen-md w-11/12 md:w-full">
         <DialogHeader>
           <DialogTitle>北海道市町村テスト 答え合わせ</DialogTitle>
           <DialogDescription asChild>
@@ -52,7 +52,11 @@ export const Answer = () => {
         </DialogHeader>
         <DialogFooter>
           <DialogClose className="w-full" asChild>
-            <div className="flex flex-row justify-between">
+            <div
+              className="
+                flex flex-col flex-wrap gap-2 content-center w-full
+                md:flex-row md:justify-between"
+            >
               <MastodonShare text={shareText} />
               <MisskeyShare text={shareText} />
               <XShare text={shareText} />
