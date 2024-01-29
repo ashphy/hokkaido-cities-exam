@@ -13,10 +13,18 @@ import { NoticeForMobile } from "./components/NoticeForMobile";
 
 import GithubCorner from "react-github-corner";
 import json from "./data/hokkaido.json";
+import { useCallback } from "react";
 
 function App() {
   const [selectedCityId, setSelectedCityId] = useAtom(selectedCityIdAtom);
   const topology = json as unknown as HokkaidoTopology;
+
+  const handleOnSelectCity = useCallback(
+    (id: string) => {
+      setSelectedCityId(id);
+    },
+    [setSelectedCityId]
+  );
 
   return (
     <main className="w-dvw h-dvh bg-blue-100">
@@ -40,7 +48,7 @@ function App() {
           <BlankMap
             topology={topology}
             selectedCityId={selectedCityId}
-            onSelect={(id) => setSelectedCityId(id)}
+            onSelect={handleOnSelectCity}
           />
         </div>
         <div className="mx-4 mb-4">
@@ -50,7 +58,7 @@ function App() {
           <QuizForm
             topology={topology}
             selectedCityId={selectedCityId}
-            onSelect={(id) => setSelectedCityId(id)}
+            onSelect={handleOnSelectCity}
           />
         </div>
         <div className="center mx-4">

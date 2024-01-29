@@ -1,10 +1,9 @@
-import { isSameCity } from "@/features/quiz/quiz";
-import { cn } from "@/lib/utils";
 import { useAtom, useAtomValue } from "jotai";
-import { useEffect } from "react";
-import { DefaultValues, FieldValues, useForm } from "react-hook-form";
+import { RefObject, createRef, useEffect, useRef } from "react";
 import type { HokkaidoTopology } from "../HokkaidoTopology";
 import { answerModeAtom, quizDataAtom } from "../atom";
+import { cn } from "@/lib/utils";
+import { isSameCity } from "@/features/quiz/quiz";
 
 interface Props {
   topology: HokkaidoTopology;
@@ -14,28 +13,26 @@ interface Props {
 
 export const QuizForm = ({ topology, selectedCityId, onSelect }: Props) => {
   const answerMode = useAtomValue(answerModeAtom);
-
   const [cities, setCities] = useAtom(quizDataAtom);
-  const { register, setFocus } = useForm({
-    values: cities.reduce<DefaultValues<FieldValues>>((acc, city) => {
-      acc[city.code] = city.answer;
-      return acc;
-    }, {}),
+
+  const listRefs = useRef<RefObject<HTMLInputElement>[]>([]);
+  cities.forEach((_, i) => {
+    listRefs.current[i] = createRef<HTMLInputElement>();
   });
 
-  const handleOnSelect = (code: string) => {
-    onSelect?.(code);
-  };
-
   const handleOnClickForm = (code: string) => {
-    setFocus(code);
+    const refIndex = cities.findIndex((c) => c.code === code);
+    const ref = listRefs.current[refIndex];
+    ref.current?.focus();
   };
 
   useEffect(() => {
     if (selectedCityId) {
-      setFocus(selectedCityId);
+      const refIndex = cities.findIndex((c) => c.code === selectedCityId);
+      const ref = listRefs.current[refIndex];
+      ref.current?.focus();
     }
-  }, [selectedCityId, setFocus]);
+  }, [cities, selectedCityId]);
 
   if (!topology.objects.hokkaido) {
     return <div>loading...</div>;
@@ -69,7 +66,8 @@ export const QuizForm = ({ topology, selectedCityId, onSelect }: Props) => {
                 <p className="text-right text-gray-700">{index + 1}</p>
                 <input
                   type="text"
-                  onInput={(e) => {
+                  ref={listRefs.current[index]}
+                  onChange={(e) => {
                     setCities((draft) => {
                       const targetCity = draft.find(
                         (c) => c.code === city.code
@@ -79,12 +77,12 @@ export const QuizForm = ({ topology, selectedCityId, onSelect }: Props) => {
                       }
                     });
                   }}
-                  onSelect={() => handleOnSelect(city.code)}
+                  value={city.answer}
+                  onSelect={() => onSelect?.(city.code)}
                   readOnly={answerMode}
                   className={cn(
                     "text-gray-900 bg-transparent border-0 focus:ring-0 focus-visible:outline-none"
                   )}
-                  {...register(city.code)}
                 />
               </div>
               {answerMode && (
